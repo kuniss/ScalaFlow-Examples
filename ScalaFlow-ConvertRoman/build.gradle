@@ -1,0 +1,24 @@
+apply plugin: 'scala'
+apply plugin: 'eclipse'
+
+sourceCompatibility = 1.5
+version = '1.0.0'
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'ScalaFlow Example ConvertRoman',
+                   'Implementation-Version': version
+    }
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile 'org.scala-lang:scala-library:2.11.7'
+    compile 'de.grammarcraft:de.grammarcraft.scala.flow:0.0.+'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.8'
+}
