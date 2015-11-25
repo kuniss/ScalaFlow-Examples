@@ -17,12 +17,14 @@ final class Body extends FunctionUnit("Body")
   with OutputPort2[String]
 {
  	// for meaningful names on binding to context
-  val number = input _
 	val result = output1
 	val error = output2
 	override protected val OutputPort1Name = "result"
 	override protected val OutputPort2Name = "error"
+	
 	// for meaningful names on binding internally
+	private[this] val _result = forwardOutput1(_)
+	private[this] val _error = forwardOutput2(_)
 	
 	val determine_number_type = new DetermineNumberType
 	val validate_roman_number = new ValidateRomanNumber
@@ -44,16 +46,16 @@ final class Body extends FunctionUnit("Body")
 	// validate_roman_number.valid -> convert_from_roman
 	validate_roman_number.valid -> convert_from_roman.input
 	// validate_roman_number.invalid -> error
-	validate_roman_number.invalid -> forwardOutput2
+	validate_roman_number.invalid -> _error
 
 	// validate_arabic_number.valid -> convert_to_roman
 	validate_arabic_number.valid -> convert_to_roman.input
 	// validate_arabic_number.invalid -> error
-	validate_arabic_number.invalid -> forwardOutput1
+	validate_arabic_number.invalid -> _error
 	
 	// convert_to_roman -> result
-	convert_to_roman.output -> forwardOutput1
+	convert_to_roman.output -> _result
 	// convert_from_roman -> result
-	convert_from_roman.output -> forwardOutput1
+	convert_from_roman.output -> _result
 
 }
