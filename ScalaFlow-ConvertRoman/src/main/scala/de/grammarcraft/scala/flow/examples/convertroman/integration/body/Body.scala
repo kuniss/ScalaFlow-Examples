@@ -32,30 +32,22 @@ final class Body extends FunctionUnit("Body")
 	val convert_from_roman = new ConvertFromRoman
 	val convert_to_roman = new ConvertToRoman
 	
+	// number -> determine_number_type 
+	// is same as:
 	def processInput(msg: String) {
-	  // number -> determine_number_type 
-    // is same as:
     determine_number_type.input(msg)
   }
     
-	// determine_number_type.romanNumber -> validate_roman_number
-  determine_number_type.romanNumber -> validate_roman_number.input
-	// determine_number_type.arabicNumber -> validate_arabic_number
-  determine_number_type.arabicNumber -> validate_arabic_number.input
+  determine_number_type.romanNumber -> validate_roman_number
+  determine_number_type.arabicNumber -> validate_arabic_number
 	
-	// validate_roman_number.valid -> convert_from_roman
-	validate_roman_number.valid -> convert_from_roman.input
-	// validate_roman_number.invalid -> error
+	validate_roman_number.valid -> convert_from_roman
 	validate_roman_number.invalid -> _error
 
-	// validate_arabic_number.valid -> convert_to_roman
-	validate_arabic_number.valid -> convert_to_roman.input
-	// validate_arabic_number.invalid -> error
+	validate_arabic_number.valid -> convert_to_roman
 	validate_arabic_number.invalid -> _error
 	
-	// convert_to_roman -> result
-	convert_to_roman.output -> _result
-	// convert_from_roman -> result
-	convert_from_roman.output -> _result
+	convert_to_roman -> _result
+	convert_from_roman -> _result
 
 }

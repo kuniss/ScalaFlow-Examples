@@ -17,8 +17,8 @@ class Head(input: IInputProvider, body:  Body, output: IOutputProvider)
     
   // setup flow
   read_number_to_convert -> convert
-	convert.result -> display_result.input
-	convert.error -> display_error.input
+	convert.result -> display_result
+	convert.error -> display_error
 	
 	def run() {
 	    read_number_to_convert.run
