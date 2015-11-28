@@ -10,6 +10,8 @@ import de.grammarcraft.scala.flow.examples.convertroman.operations.conversions.D
 import de.grammarcraft.scala.flow.examples.convertroman.operations.conversions.ValidateArabicNumber
 import de.grammarcraft.scala.flow.examples.convertroman.operations.conversions.ValidateRomanNumber
 
+import de.grammarcraft.scala.flow.ControlStructures._
+
 
 final class Body extends FunctionUnit("Body") 
   with InputPort[String]
@@ -49,5 +51,5 @@ final class Body extends FunctionUnit("Body")
 	
 	convert_to_roman -> _result
 	convert_from_roman -> _result
-
+	
 }
