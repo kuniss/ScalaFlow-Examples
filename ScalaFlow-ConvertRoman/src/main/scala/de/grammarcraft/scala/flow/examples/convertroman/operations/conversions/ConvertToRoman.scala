@@ -11,7 +11,7 @@ class ConvertToRoman extends FunctionUnit("ConvertToRoman")
     def processInput(arabicNumber: Int) {
         val factors = factorizeArabicNumber(arabicNumber)
         val digits = mapFactorsToDigits(factors)
-        forwardOutput(digits mkString)
+        output <= { digits mkString }
     }
     
     val MAP: Map[Int,String] = Map(

@@ -12,7 +12,7 @@ class ConvertFromRoman extends FunctionUnit("ConvertFromRoman")
     def processInput(romanNumber: String) {
         val values = mapRomanNumberToValues(romanNumber)
         val negatedValues = applySubstrationRule(values)
-        forwardOutput(Integer.toString(negatedValues.reduce(_+_)))
+        output <= { Integer.toString(negatedValues.reduce(_+_)) }
     }
     
     val mapR2I: Map[Char, Int] = Map(

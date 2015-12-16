@@ -11,7 +11,7 @@ class ConversionTest {
     private def test_from_roman(romanNumber: String, arabicNumber: Int) {
         val c = new ConvertFromRoman
         c.output -> { x => Assert.assertEquals(Integer.toString(arabicNumber), x)}
-        c.input(romanNumber)
+        c.input <= romanNumber
     }
 
     @Test
@@ -25,7 +25,7 @@ class ConversionTest {
     private def test_to_roman(arabicNumber: Int, romanNumber: String) {
         val c = new ConvertToRoman
         c.output -> { x => Assert.assertEquals(romanNumber, x) } 
-        c.input(arabicNumber)
+        c.input <= arabicNumber
     }
     
     @Test

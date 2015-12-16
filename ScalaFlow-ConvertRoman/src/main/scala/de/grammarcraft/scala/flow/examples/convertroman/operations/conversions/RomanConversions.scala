@@ -12,17 +12,16 @@ class DetermineNumberType extends FunctionUnit("DetermineNumberType")
   with OutputPort2[Int]
 {
     // for meaningful names on binding to context
-	  val romanNumber = output1
-	  val arabicNumber = output2
-		override protected val OutputPort1Name = "romanNumber"
-		override protected val OutputPort2Name = "arabicNumber"
+	  val romanNumber = OutputPort1("romanNumber")
+	  val arabicNumber = OutputPort2("arabicNumer")
     
     def processInput(number: String) {
         try {
-            forwardOutput2(Integer.parseInt(number))
+            arabicNumber <= Integer.parseInt(number)
         }
         catch {
-          case _:NumberFormatException => forwardOutput1(number)
+          case _:NumberFormatException => 
+            romanNumber <= number
         }
     }
     
@@ -37,16 +36,14 @@ class ValidateRomanNumber extends FunctionUnit("ValidateRomanNumber")
 {
     
     // for meaningful names on binding to context
-  	val valid = output1
-  	val invalid = output2
-  	override protected val OutputPort1Name = "valid"
-  	override protected val OutputPort2Name = "invalid"
+  	val valid = OutputPort1("valid")
+  	val invalid = OutputPort2("invalid")
 
     def processInput(romanNumber: String) {
         if (Pattern.matches("^[IVXLCDM]+$", romanNumber.toUpperCase))
-            forwardOutput1(romanNumber)
+            valid <= romanNumber
         else
-            forwardOutput2("Invalid roman digit found in " + romanNumber)
+            invalid <= "Invalid roman digit found in " + romanNumber
     }
     
 }
@@ -58,16 +55,14 @@ class ValidateArabicNumber extends FunctionUnit("ValidateRomanNumber")
   with OutputPort2[String]
 {
     // for meaningful names on binding to context
-  	val valid = output1
-  	val invalid = output2
-  	override protected val OutputPort1Name = "valid"
-  	override protected val OutputPort2Name = "invalid"
+  	val valid = OutputPort1("valid")
+  	val invalid = OutputPort2("invalid")
     
     def processInput(arabicNumber: Int) {
         if (arabicNumber >= 0 && arabicNumber <= 3000)
-            forwardOutput1(arabicNumber)
+            valid <= arabicNumber
         else
-            forwardOutput2("Invalid arabic number " + arabicNumber + "; must be in range 1..3000")
+            invalid <= "Invalid arabic number " + arabicNumber + "; must be in range 1..3000"
     }
     
 }

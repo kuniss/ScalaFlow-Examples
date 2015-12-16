@@ -12,7 +12,7 @@ class ReadNumberToConvert(val inputProvider: IInputProvider)
   with OutputPort[String]
 {
     protected def processInput(msg: Unit) {
-        forwardOutput(this.inputProvider.read_number_to_convert())
+        output <= this.inputProvider.read_number_to_convert()
     }
     
     def run() {
