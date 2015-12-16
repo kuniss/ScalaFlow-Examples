@@ -16,7 +16,7 @@ repositories {
 
 dependencies {
     compile 'org.scala-lang:scala-library:2.11.7'
-    compile 'de.grammarcraft:de.grammarcraft.scala.flow:0.0.+'
+    compile 'de.grammarcraft:de.grammarcraft.scala.flow:0.1.+'
     testCompile 'junit:junit:4.12'
 }
 
