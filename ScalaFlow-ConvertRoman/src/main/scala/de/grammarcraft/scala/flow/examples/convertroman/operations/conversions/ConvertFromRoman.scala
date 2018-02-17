@@ -10,9 +10,11 @@ class ConvertFromRoman extends FunctionUnit("ConvertFromRoman")
   with OutputPort[String]
 {
     def processInput(romanNumber: String) {
-        val values = mapRomanNumberToValues(romanNumber)
-        val negatedValues = applySubstrationRule(values)
-        output <= { Integer.toString(negatedValues.reduce(_+_)) }
+        output <= { 
+          val values = mapRomanNumberToValues(romanNumber)
+          val negatedValues = applySubstrationRule(values)
+          Integer.toString(negatedValues.reduce(_+_)) 
+        }
     }
     
     val mapR2I: Map[Char, Int] = Map(
